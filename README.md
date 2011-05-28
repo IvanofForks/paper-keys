@@ -7,7 +7,7 @@ If you have
 
 then running:
 <pre>
-python paper-keys.py --num-copies=3 --denomination=10
+python paper-keys.py --num-pages=3 --denomination=10
 </pre>
 
 ...will create a folder in your current directory with these files:

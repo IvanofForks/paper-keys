@@ -6,7 +6,7 @@ def main():
   
   parser = optparse.OptionParser()
   parser.add_option('-d', '--denomination', dest='denomination', default="")
-  parser.add_option('-n', '--num-copies', dest='n', default=1)
+  parser.add_option('-n', '--num-pages', dest='n', default=1)
   options, args = parser.parse_args()
   n = int(options.n)
   assert n >= 1
