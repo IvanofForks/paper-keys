@@ -26,5 +26,11 @@ public class KeyTool {
             }
             System.out.println("]}");
         }
+        else if (args[0].equals("--address-of-priv58")) {
+            String priv58 = args[1];
+            ECKey key = new ECKey(Base58.decodeToBigInteger(priv58));
+            String address = key.toAddress(NetworkParameters.prodNet()).toString();
+            System.out.println(address);
+        }
     }
 }

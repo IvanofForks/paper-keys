@@ -18,9 +18,9 @@ page2.pdf
 page3.pdf
 </pre>
 
-# Example
+## Example
 
-## addresses.txt
+### addresses.txt
 <pre>
 
 Page 1:
@@ -40,6 +40,15 @@ Page 3:
 
 </pre>
 
-## page1.pdf
+### page1.pdf
 
 ![](//github.com/bitcoin-labs/paper-keys/raw/master/documentation/page1.png)
+
+
+## Private &rarr; Address
+<pre>
+python paper-keys.py 4WAqdAN4kq8KaFnxYGEmisH84bFpVpowXJgMkDsKUSDE
+</pre>
+<pre>
+17NwoDvissrGDnKRoEtPwEPLpbcWs9NzLs
+</pre>

@@ -12,23 +12,22 @@ def main():
   assert n >= 1
   denomination = options.denomination
   
-  keys = gen_keys(3 * n)
-  
-  addr_lines = []
-  
-  dirPath = 'keys-' + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-  subprocess.check_call(['mkdir', '-p', dirPath])
-  for i in range(n):
-    pageKeys = keys[3 * i : 3 * i + 3]
-    pageNum = i + 1
-    savePage(pageKeys, denomination, "%s/page%d" % (dirPath, pageNum))
-    
-    addr_lines.append("\nPage %d:\n" % pageNum)
-    for key in pageKeys:
-      addr_lines.append("    %s\n" % key['address'])
-  
-  with open("%s/addresses.txt" % dirPath, "wb") as f:
-    f.write(''.join(addr_lines).encode('utf-8'))
+  if len(args) == 1:
+    print run_keytool('--address-of-priv58', args[0])
+  else:
+    keys = gen_keys(3 * n)
+    addr_lines = []
+    dirPath = 'keys-' + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    subprocess.check_call(['mkdir', '-p', dirPath])
+    for i in range(n):
+      pageKeys = keys[3 * i : 3 * i + 3]
+      pageNum = i + 1
+      savePage(pageKeys, denomination, "%s/page%d" % (dirPath, pageNum))
+      addr_lines.append("\nPage %d:\n" % pageNum)
+      for key in pageKeys:
+        addr_lines.append("    %s\n" % key['address'])
+    with open("%s/addresses.txt" % dirPath, "wb") as f:
+      f.write(''.join(addr_lines).encode('utf-8'))
 
 
 def savePage(keys, denomination, pathPrefix):
@@ -43,12 +42,17 @@ def compile_keytool():
   subprocess.check_call(['javac', 'KeyTool.java', '-cp', 'bitcoinj.jar'])
 
 
-def gen_keys(n):
+def run_keytool(*args):
   out, err = (subprocess
-                .Popen(['java', '-classpath', './bitcoinj.jar:./', 'KeyTool', '--gen-keys', str(n)],
+                .Popen(['java', '-classpath', './bitcoinj.jar:./', 'KeyTool'] + list(args),
                     stdout=subprocess.PIPE)
                 .communicate())
-  return json.loads(out)['keys']
+  return out
+
+
+def gen_keys(n):
+  j = run_keytool('--gen-keys', str(n))
+  return json.loads(j)['keys']
 
 
 def f2s(x):
