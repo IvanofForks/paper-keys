@@ -10,7 +10,7 @@ then running:
 python paper-keys.py --num-copies=3 --denomination=10
 </pre>
 
-...will a folder in your current directory with these files:
+...will create a folder in your current directory with these files:
 <pre>
 paper-keys-generated/
   addresses.txt
