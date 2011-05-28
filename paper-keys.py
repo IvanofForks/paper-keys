@@ -1,5 +1,5 @@
 
-import datetime, subprocess, json, optparse
+import datetime, os, subprocess, json, optparse
 from PyQRNative import QRCode, QRErrorCorrectLevel
 
 def main():
@@ -30,11 +30,19 @@ def main():
       f.write(''.join(addr_lines).encode('utf-8'))
 
 
+def findInkscape():
+  macPath = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
+  if os.path.isfile(macPath):
+    return macPath
+  else:
+    return "inkscape"
+
+
 def savePage(keys, denomination, pathPrefix):
   svg = draw_3up(keys, denomination)
   with open("%s.svg" % pathPrefix, "wb") as f:
     f.write(svg.encode('utf-8'))
-  subprocess.check_call(['inkscape', '--export-pdf=%s.pdf' % pathPrefix, '%s.svg' % pathPrefix])
+  subprocess.check_call([findInkscape(), '--export-pdf=%s.pdf' % pathPrefix, '%s.svg' % pathPrefix])
   subprocess.check_call(['rm', '%s.svg' % pathPrefix])
 
 
