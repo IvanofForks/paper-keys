@@ -1,5 +1,5 @@
 
-import sys, subprocess, json, optparse
+import datetime, subprocess, json, optparse
 from PyQRNative import QRCode, QRErrorCorrectLevel
 
 def main():
@@ -16,7 +16,7 @@ def main():
   
   addr_lines = []
   
-  dirPath = 'paper-keys-generated'
+  dirPath = 'keys-' + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
   subprocess.check_call(['mkdir', '-p', dirPath])
   for i in range(n):
     pageKeys = keys[3 * i : 3 * i + 3]

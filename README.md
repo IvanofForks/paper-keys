@@ -10,13 +10,12 @@ then running:
 python paper-keys.py --num-pages=3 --denomination=10
 </pre>
 
-...will create a folder in your current directory with these files:
+...will create a folder (e.g. <code>keys-2011-05-28-13-28-49</code>) in your current directory with these files:
 <pre>
-paper-keys-generated/
-  addresses.txt
-  page1.pdf
-  page2.pdf
-  page3.pdf
+addresses.txt
+page1.pdf
+page2.pdf
+page3.pdf
 </pre>
 
 # Example
