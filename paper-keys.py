@@ -1,4 +1,3 @@
-
 import datetime, os, subprocess, json, optparse
 from PyQRNative import QRCode, QRErrorCorrectLevel
 
@@ -43,7 +42,6 @@ def savePage(keys, denomination, pathPrefix):
   with open("%s.svg" % pathPrefix, "wb") as f:
     f.write(svg.encode('utf-8'))
   subprocess.check_call([findInkscape(), '--export-pdf=%s.pdf' % pathPrefix, '%s.svg' % pathPrefix])
-  subprocess.check_call(['rm', '%s.svg' % pathPrefix])
 
 
 def compile_keytool():
