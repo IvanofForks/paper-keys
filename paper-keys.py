@@ -1,4 +1,5 @@
-import datetime, os, subprocess, json, optparse
+import datetime, os, subprocess, optparse
+import simplejson as json
 from PyQRNative import QRCode, QRErrorCorrectLevel
 
 def main():
