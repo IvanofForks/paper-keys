@@ -16,6 +16,8 @@ def main():
   else:
     keys = gen_keys(3 * n)
     addr_lines = []
+    key_lines = []
+    
     dirPath = 'keys-' + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     subprocess.check_call(['mkdir', '-p', dirPath])
     for i in range(n):
@@ -23,10 +25,18 @@ def main():
       pageNum = i + 1
       savePage(pageKeys, denomination, "%s/page%d" % (dirPath, pageNum))
       addr_lines.append("\nPage %d:\n" % pageNum)
+      key_lines.append("\nPage %d:\n" % pageNum)
       for key in pageKeys:
         addr_lines.append("    %s\n" % key['address'])
+        
+        key_lines.append("\n    %s\n" % key['address'])
+        key_lines.append("    %s\n" % key['priv58'])
+    
     with open("%s/addresses.txt" % dirPath, "wb") as f:
       f.write(''.join(addr_lines).encode('utf-8'))
+    
+    with open("%s/keys.txt" % dirPath, "wb") as f:
+      f.write(''.join(key_lines).encode('utf-8'))
 
 
 def findInkscape():
