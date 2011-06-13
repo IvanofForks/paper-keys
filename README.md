@@ -2,7 +2,7 @@
 If you have
 
   * <code>java</code>
-  * <code>python</code> (>= 2.6)
+  * <code>python</code>
   * <code>inkscape</code>
 
 then running:
