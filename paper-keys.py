@@ -1,3 +1,4 @@
+from __future__ import with_statement
 import datetime, os, subprocess, optparse
 import simplejson as json
 from PyQRNative import QRCode, QRErrorCorrectLevel
